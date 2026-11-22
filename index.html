@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>reseller by agt - Toko Online LEGO Indonesia Resmi</title>
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Color Palette Indicator Strip (Sesuai Palet Warna Permintaan) -->
+  <div class="palette-strip">
+    <div class="strip-1" title="Periwinkle pale blue (#9DCCEC)"></div>
+    <div class="strip-2" title="Soft pink (#F3C9C5)"></div>
+    <div class="strip-3" title="Spring Coral (#F49B9B)"></div>
+    <div class="strip-4" title="Peach Fuzz (#FFB18C)"></div>
+    <div class="strip-5" title="Butter Yellow (#FFE8A9)"></div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <!-- Brand Logo -->
+      <a class="brand-logo" href="#home">
+        <div class="brand-icon">🧱</div>
+        <div class="brand-title">
+          <span class="brand-name">reseller <span>by agt</span></span>
+          <span class="brand-tagline">Authorized LEGO Marketplace</span>
+        </div>
+      </a>
+
+      <!-- Global Search -->
+      <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="globalSearchInput" class="search-input" placeholder="Cari set LEGO (nama, nomor set, koleksi)...">
+      </div>
+
+      <!-- Navigation & Action Buttons -->
+      <div class="nav-actions">
+        <!-- QA Panel Trigger -->
+        <button class="btn-qa-pill" onclick="toggleQADrawer(true)">
+          <span>🧪</span>
+          <span>Panel Uji QA</span>
+        </button>
+
+        <!-- User Auth Toggle (Member vs Guest) -->
+        <div class="user-status-card">
+          <div id="userStatusIndicator" class="user-status-indicator indicator-guest"></div>
+          <span id="userStatusText">Tamu (Belum Login)</span>
+          <button id="btnAuthToggle" class="btn-auth-toggle" onclick="toggleAuthUser()">(Login)</button>
+        </div>
+
+        <!-- Cart Button -->
+        <button class="cart-btn" onclick="toggleCartDrawer(true)" title="Keranjang Belanja">
+          🛒
+          <span id="cartCountBadge" class="cart-count-badge">0</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Sub Navigation -->
+    <div class="sub-nav">
+      <div class="sub-nav-inner">
+        <ul class="nav-links">
+          <li><a href="#home" class="active">🏠 Beranda</a></li>
+          <li><a href="#katalog">📦 Katalog LEGO</a></li>
+          <li><a href="#ordersSection">📋 Riwayat Pesanan</a></li>
+          <li><a href="javascript:void(0)" onclick="toggleQADrawer(true)">🎯 Testing Lab</a></li>
+        </ul>
+        <div class="promo-ticker">
+          <span>🎉 Gunakan kupon <strong>RESELLER10</strong> untuk diskon 10% (Khusus Member, min. Rp 100.000)</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-wrapper" id="home">
+    
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+      <div class="hero-content">
+        <span class="hero-tag">✨ RESELLER RESMI LEGO INDONESIA</span>
+        <h1 class="hero-title">Koleksi Lengkap <span>LEGO® Original</span> Untuk Semua Usia</h1>
+        <p class="hero-desc">
+          Dapatkan set LEGO impian mulai dari Botanical Collection, Ideas, Technic F1, hingga Star Wars UCS. 100% Produk Original bergaransi resmi.
+        </p>
+
+        <div class="hero-promo-badge">
+          <div>
+            <div style="font-size: 11px; font-weight: 700; color: #7A3E16; text-transform: uppercase;">Kupon Khusus Member:</div>
+            <div style="font-size: 13px; color: var(--dark-text); font-weight: 500;">Diskon 10% minimal subtotal Rp 100.000</div>
+          </div>
+          <div class="promo-code-box">RESELLER10</div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#katalog" class="btn-primary" style="text-decoration: none;">Jelajahi Produk</a>
+          <button class="btn-secondary" onclick="toggleQADrawer(true)">Buka Panduan Uji Bug</button>
+        </div>
+      </div>
+
+      <!-- Hero Visual Previews -->
+      <div class="hero-lego-preview">
+        <div class="hero-lego-card">
+          <img src="images/21349.jpg" alt="Lego Tuxedo Cat">
+          <div class="set-name">Lego Tuxedo Cat</div>
+          <div class="set-price">Rp 2.599.000</div>
+        </div>
+        <div class="hero-lego-card">
+          <img src="images/10281.jpg" alt="Lego Bonsai Tree">
+          <div class="set-name">Lego Bonsai Tree</div>
+          <div class="set-price">Rp 999.000</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Filter & Catalog Section -->
+    <section id="katalog">
+      <div class="filter-section">
+        <div class="filter-pills">
+          <button class="filter-btn active" data-category="all">Semua Kategori</button>
+          <button class="filter-btn" data-category="ideas">🌿 Ideas & Botanical</button>
+          <button class="filter-btn" data-category="technic">🏎️ Technic & Speed</button>
+          <button class="filter-btn" data-category="starwars">🚀 Star Wars & Marvel</button>
+          <button class="filter-btn" data-category="classic">🏛️ Classic & Architecture</button>
+        </div>
+        <div class="filter-stats" id="productCount">Menampilkan 12 set Lego</div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="product-grid" id="productGrid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- Orders / Transaction History & State Transitions -->
+    <section class="orders-section" id="ordersSection">
+      <div class="section-header">
+        <div>
+          <h2>📦 Riwayat Pesanan & State Transition</h2>
+          <p style="font-size: 13px; color: var(--muted-text); margin-top: 4px;">
+            Simulasi alur transaksi pesanan untuk menguji <strong>State Transition Testing</strong> (Defect Bug-04).
+          </p>
+        </div>
+        <div class="state-legend">
+          <span class="legend-badge badge-pending">Menunggu Pembayaran</span>
+          <span class="legend-badge badge-shipped">Diproses & Dikirim</span>
+          <span class="legend-badge badge-completed">Selesai</span>
+          <span class="legend-badge badge-cancelled">Dibatalkan</span>
+        </div>
+      </div>
+
+      <div class="order-cards-list" id="ordersContainer">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Product Detail & BVA Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="detail-modal" id="detailModal" style="display: none;">
+      <div class="detail-modal-header">
+        <h3 style="font-size: 16px; font-weight: 700; color: var(--dark-text);">Detail Produk & Pengujian BVA</h3>
+        <button class="btn-close-drawer" onclick="closeModals()">✕</button>
+      </div>
+      <div class="detail-modal-body" id="detailModalContent">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Shopping Cart Drawer -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <h3>🛒 Keranjang Belanja</h3>
+      <button class="btn-close-drawer" onclick="toggleCartDrawer(false)">✕</button>
+    </div>
+
+    <div class="cart-items-body" id="cartItemsContainer">
+      <!-- Rendered dynamically -->
+    </div>
+
+    <div class="cart-drawer-footer">
+      <!-- Voucher Box (Decision Table) -->
+      <div class="voucher-box">
+        <label style="font-size: 12px; font-weight: 600; color: var(--dark-text); display: block; margin-bottom: 4px;">
+          Kode Voucher Promo (Uji Decision Table):
+        </label>
+        <div class="voucher-input-group">
+          <input type="text" id="voucherCodeInput" class="voucher-input" placeholder="Ketik RESELLER10..." value="RESELLER10">
+          <button class="btn-apply-voucher" onclick="applyVoucherCode()">Gunakan</button>
+        </div>
+        <div id="voucherMessage" class="voucher-message"></div>
+      </div>
+
+      <!-- Pricing Summary -->
+      <table class="cart-summary-table">
+        <tr>
+          <td style="color: var(--muted-text);">Subtotal:</td>
+          <td id="cartSubtotal">Rp 0</td>
+        </tr>
+        <tr id="cartDiscountRow" style="display: none; color: #059669;">
+          <td>Diskon Kupon (10%):</td>
+          <td id="cartDiscount">- Rp 0</td>
+        </tr>
+        <tr class="row-total">
+          <td>Total Pembayaran:</td>
+          <td id="cartGrandTotal">Rp 0</td>
+        </tr>
+      </table>
+
+      <button class="btn-checkout" onclick="performCheckout()">Checkout Sekarang</button>
+      <div id="cartNotice" style="font-size: 11px; color: var(--muted-text); text-align: center; margin-top: 8px;">
+        Uji REQ-05: Coba checkout saat keranjang kosong untuk menguji validasi.
+      </div>
+    </div>
+  </div>
+
+  <!-- QA Testing Lab Drawer (Side Panel) -->
+  <div class="qa-drawer" id="qaDrawer">
+    <div class="qa-drawer-header">
+      <h3>🧪 QA Testing Lab & Defect Console</h3>
+      <button class="btn-close-drawer" onclick="toggleQADrawer(false)" style="color: #94A3B8;">✕</button>
+    </div>
+
+    <!-- QA Tabs -->
+    <div class="qa-tabs">
+      <button class="qa-tab-btn active" id="tabBtn-guide" onclick="switchQATab('guide')">📖 4 Panduan Bug</button>
+      <button class="qa-tab-btn" id="tabBtn-runner" onclick="switchQATab('runner')">⚡ Unit Test Runner</button>
+      <button class="qa-tab-btn" id="tabBtn-matrix" onclick="switchQATab('matrix')">📋 Matriks Pengujian</button>
+    </div>
+
+    <div class="qa-drawer-body">
+      
+      <!-- Top Control: Bug Switch Toggle -->
+      <div class="qa-control-panel">
+        <div class="bug-toggle-wrapper">
+          <label class="switch">
+            <input type="checkbox" id="bugModeCheckbox" checked>
+            <span class="slider"></span>
+          </label>
+          <div>
+            <div style="font-size: 13px; font-weight: 700; color: #F1F5F9;">Mode Defect (Bug):</div>
+            <div id="bugModeStatusLabel" style="font-size: 12px;">
+              <span style="color: #EF4444; font-weight: 700;">AKTIF (4 Defect Sengaja Berlaku)</span>
+            </div>
+          </div>
+        </div>
+        <div style="font-size: 11px; color: #94A3B8; max-width: 200px; text-align: right;">
+          Nyalakan untuk uji FAIL, matikan untuk demonstrasi Regression (PASS).
+        </div>
+      </div>
+
+      <!-- TAB 1: GUIDE TO 4 BUGS -->
+      <div class="qa-tab-content" id="tabContent-guide">
+        
+        <!-- Bug 1: BVA -->
+        <div class="qa-bug-card">
+          <div class="qa-bug-header">
+            <span class="qa-bug-title">1. Boundary Value Analysis (BVA) - BUG-01</span>
+            <span class="qa-tech-pill">BVA (REQ-01)</span>
+          </div>
+          <div class="qa-bug-spec">
+            <strong>Spesifikasi:</strong> Pembelian jumlah LEGO per transaksi diizinkan <strong>1 s.d. 10 unit</strong> (Min: 1, Max: 10). Nilai batas atas 11 harus DITOLAK.<br>
+            <strong>Defect / Bug:</strong> Operator validasi batas atas menggunakan <code>qty &lt;= 11</code>.<br>
+            <strong>Cara Menguji di Web:</strong> Klik salah satu produk LEGO, buka detailnya, masukkan jumlah <strong>11</strong> lalu klik <em>Tambah ke Keranjang</em>. Sistem cacat akan menerimanya! (Expected: Ditolak).
+          </div>
+          <div class="qa-code-diff">
+            <div class="diff-wrong">❌ Cacat: if (qty &gt;= 1 &amp;&amp; qty &lt;= 11) // Menerima 11 unit</div>
+            <div class="diff-correct">✅ Benar: if (qty &gt;= 1 &amp;&amp; qty &lt;= 10) // Maksimal 10 unit</div>
+          </div>
+        </div>
+
+        <!-- Bug 2: EP -->
+        <div class="qa-bug-card">
+          <div class="qa-bug-header">
+            <span class="qa-bug-title">2. Equivalence Partitioning (EP) - BUG-02</span>
+            <span class="qa-tech-pill">EP (REQ-02)</span>
+          </div>
+          <div class="qa-bug-spec">
+            <strong>Spesifikasi:</strong> Partisi Valid adalah bilangan bulat positif <code>[1..10]</code>. Partisi Tidak Valid mencakup bilangan negatif (<code>qty &lt; 0</code>). Subtotal dilarang minus dan input negatif wajib ditolak.<br>
+            <strong>Defect / Bug:</strong> Perhitungan subtotal dan input manual di keranjang belanja tidak memvalidasi partisi negatif.<br>
+            <strong>Cara Menguji di Web:</strong> Tambahkan item ke keranjang belanja, lalu pada kotak jumlah, ketik angka <strong>-1</strong>. Subtotal akan menjadi negatif dan mengurangi tagihan total! (Expected: Muncul error / ValueError).
+          </div>
+          <div class="qa-code-diff">
+            <div class="diff-wrong">❌ Cacat: subtotal = price * qty; // Mengizinkan qty = -1</div>
+            <div class="diff-correct">✅ Benar: if (qty &lt;= 0) throw new ValueError("Kuantitas tidak valid");</div>
+          </div>
+        </div>
+
+        <!-- Bug 3: Decision Table -->
+        <div class="qa-bug-card">
+          <div class="qa-bug-header">
+            <span class="qa-bug-title">3. Decision Table Testing - BUG-03</span>
+            <span class="qa-tech-pill">Decision Table (REQ-03)</span>
+          </div>
+          <div class="qa-bug-spec">
+            <strong>Spesifikasi:</strong> Kupon <code>RESELLER10</code> (diskon 10%) HANYA berlaku jika:<br>
+            (1) User Login Member, (2) Subtotal &gt;= Rp 100.000, (3) Kode 'RESELLER10'.<br>
+            <strong>Defect / Bug:</strong> Evaluasi kupon lupa mengecek status <code>isLoggedIn</code>.<br>
+            <strong>Cara Menguji di Web:</strong> Pastikan status Anda adalah <strong>Tamu (Belum Login)</strong>, belanja set di atas Rp 100.000, buka keranjang dan terapkan kupon <code>RESELLER10</code>. Tamu berhasil dapat diskon (Melanggar Rule 4 Decision Table)!
+          </div>
+          <div class="qa-code-diff">
+            <div class="diff-wrong">❌ Cacat: if (subtotal &gt;= 100000 &amp;&amp; code === 'RESELLER10') // Status login diabaikan</div>
+            <div class="diff-correct">✅ Benar: if (isLoggedIn &amp;&amp; subtotal &gt;= 100000 &amp;&amp; code === 'RESELLER10')</div>
+          </div>
+        </div>
+
+        <!-- Bug 4: State Transition -->
+        <div class="qa-bug-card">
+          <div class="qa-bug-header">
+            <span class="qa-bug-title">4. State Transition Testing - BUG-04</span>
+            <span class="qa-tech-pill">State Transition (REQ-04)</span>
+          </div>
+          <div class="qa-bug-spec">
+            <strong>Spesifikasi:</strong> Transisi status pesanan dari <code>PENDING_PAYMENT</code> &rarr; <code>DIPROSES_DIKIRIM</code> &rarr; <code>SELESAI</code>. Transisi Terlarang: Pesanan yang sudah berstatus <code>DIPROSES_DIKIRIM</code> <strong>DILARANG</strong> dibatalkan langsung (<code>DIBATALKAN</code>) karena paket sudah di tangan kurir ekspedisi.<br>
+            <strong>Defect / Bug:</strong> Tombol 'Batalkan' tetap diizinkan saat pesanan berstatus <code>DIPROSES_DIKIRIM</code>.<br>
+            <strong>Cara Menguji di Web:</strong> Lihat pesanan <strong>AGT-ORD-9018</strong> (status: Diproses & Dikirim) pada Riwayat Pesanan, lalu klik tombol <strong>⚠️ Batalkan (Uji Bug)</strong>. Status berhasil berubah jadi Dibatalkan (Transisi Ilegal)!
+          </div>
+          <div class="qa-code-diff">
+            <div class="diff-wrong">❌ Cacat: if (action === 'BATALKAN') return 'DIBATALKAN'; // Tanpa cek status</div>
+            <div class="diff-correct">✅ Benar: if (currentStatus === 'DIPROSES_DIKIRIM') rejectTransition();</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TAB 2: AUTOMATED UNIT TEST RUNNER -->
+      <div class="qa-tab-content" id="tabContent-runner" style="display: none;">
+        <p style="font-size: 13px; color: #CBD5E1; margin-bottom: 12px;">
+          Pilih suite pengujian otomatis untuk menguji fungsi web dan menghasilkan bukti screenshot laporan:
+        </p>
+        <div style="display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap;">
+          <button class="btn-run-tests" onclick="runAutomatedTestSuite()">
+            <span>▶</span>
+            <span>Jalankan 28 Test Utama (Sub-bab E)</span>
+          </button>
+          <button class="btn-run-tests" onclick="runAdditionalTestSuite()" style="background: linear-gradient(135deg, #10B981, #059669);">
+            <span>▶</span>
+            <span>Jalankan 6 Test Tambahan (Sub-bab F)</span>
+          </button>
+        </div>
+        <div class="qa-test-runner-console" id="testRunnerOutput">
+Pilih dan klik salah satu tombol pengujian di atas untuk memulai eksekusi otomatis...
+        </div>
+      </div>
+
+      <!-- TAB 3: TEST MATRIX & TRACEABILITY -->
+      <div class="qa-tab-content" id="tabContent-matrix" style="display: none;">
+        <h4 style="font-size: 14px; color: #FFE8A9; margin-bottom: 8px;">Tabel Matriks 28 Kasus Uji Utama (Sub-bab E Form P10):</h4>
+        <div style="overflow-x: auto; max-height: 420px;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 11px; text-align: left; color: #CBD5E1;">
+            <thead>
+              <tr style="background: #0F172A; color: #FEB290; border-bottom: 1px solid #334155; position: sticky; top: 0;">
+                <th style="padding: 6px;">ID</th>
+                <th style="padding: 6px;">REQ</th>
+                <th style="padding: 6px;">Input / Skenario</th>
+                <th style="padding: 6px;">Expected</th>
+                <th style="padding: 6px;">Keterangan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding: 5px;">TC-01</td><td>REQ-02</td><td>(1, 15)</td><td style="color: #4ADE80;">True</td><td>BVA Batas Bawah</td></tr>
+              <tr><td style="padding: 5px;">TC-02</td><td>REQ-02</td><td>(5, 15)</td><td style="color: #4ADE80;">True</td><td>BVA Nominal</td></tr>
+              <tr><td style="padding: 5px;">TC-03</td><td>REQ-02</td><td>(10, 15)</td><td style="color: #4ADE80;">True</td><td>BVA Batas Atas</td></tr>
+              <tr><td style="padding: 5px;">TC-04</td><td>REQ-02</td><td>(0, 15)</td><td style="color: #4ADE80;">False</td><td>BVA Bawah Tidak Valid</td></tr>
+              <tr style="background: rgba(239, 68, 68, 0.15);"><td style="padding: 5px;">TC-05</td><td>REQ-02</td><td>(11, 15)</td><td style="color: #F87171;">False</td><td>🔴 BUG-01 (BVA: 11 diterima)</td></tr>
+              <tr><td style="padding: 5px;">TC-06</td><td>REQ-02</td><td>(8, 5)</td><td style="color: #4ADE80;">False</td><td>BVA Stok Kurang</td></tr>
+              <tr style="background: rgba(239, 68, 68, 0.15);"><td style="padding: 5px;">TC-07</td><td>REQ-02</td><td>(2.5, 15)</td><td style="color: #F87171;">False</td><td>🔴 BUG-02 (EP Desimal)</td></tr>
+              <tr><td style="padding: 5px;">TC-08</td><td>REQ-02</td><td>(-1, 15)</td><td style="color: #4ADE80;">False</td><td>EP Negatif</td></tr>
+              <tr><td style="padding: 5px;">TC-09</td><td>REQ-02</td><td>(True, 15)</td><td style="color: #4ADE80;">False</td><td>EP Tipe Boolean</td></tr>
+              <tr><td style="padding: 5px;">TC-10</td><td>REQ-02</td><td>(1, -1)</td><td style="color: #4ADE80;">False</td><td>EP Stok Negatif</td></tr>
+              <tr><td style="padding: 5px;">TC-11</td><td>REQ-03</td><td>(50000, 1)</td><td style="color: #4ADE80;">50000</td><td>Subtotal 1 unit</td></tr>
+              <tr><td style="padding: 5px;">TC-12</td><td>REQ-03</td><td>(50000, 5)</td><td style="color: #4ADE80;">250000</td><td>Subtotal 5 unit</td></tr>
+              <tr><td style="padding: 5px;">TC-13</td><td>REQ-03</td><td>(50000, 10)</td><td style="color: #4ADE80;">500000</td><td>Subtotal 10 unit</td></tr>
+              <tr><td style="padding: 5px;">TC-14</td><td>REQ-03</td><td>(50000, 0)</td><td style="color: #4ADE80;">0</td><td>Subtotal 0 unit</td></tr>
+              <tr><td style="padding: 5px;">TC-15</td><td>REQ-03</td><td>(-50000, 5)</td><td style="color: #4ADE80;">ValueError</td><td>Harga Negatif</td></tr>
+              <tr style="background: rgba(239, 68, 68, 0.15);"><td style="padding: 5px;">TC-16</td><td>REQ-03</td><td>(50000, -1)</td><td style="color: #F87171;">ValueError</td><td>🔴 BUG-02 (EP Subtotal Minus)</td></tr>
+              <tr><td style="padding: 5px;">TC-17</td><td>REQ-04</td><td>(250k, True, RESELLER10)</td><td style="color: #4ADE80;">25000</td><td>Diskon 10% Valid</td></tr>
+              <tr><td style="padding: 5px;">TC-18</td><td>REQ-04</td><td>(100k, True, RESELLER10)</td><td style="color: #4ADE80;">10000</td><td>BVA Subtotal 100k</td></tr>
+              <tr style="background: rgba(239, 68, 68, 0.15);"><td style="padding: 5px;">TC-19</td><td>REQ-04</td><td>(250k, False, RESELLER10)</td><td style="color: #F87171;">0</td><td>🔴 BUG-03 (DT: Tamu Diskon)</td></tr>
+              <tr><td style="padding: 5px;">TC-20</td><td>REQ-04</td><td>(99999, True, RESELLER10)</td><td style="color: #4ADE80;">0</td><td>BVA Subtotal 99.999</td></tr>
+              <tr><td style="padding: 5px;">TC-21</td><td>REQ-04</td><td>(250k, True, SALAH10)</td><td style="color: #4ADE80;">0</td><td>Kupon Salah</td></tr>
+              <tr><td style="padding: 5px;">TC-22</td><td>REQ-04</td><td>(250k, True, '')</td><td style="color: #4ADE80;">0</td><td>Kupon Kosong</td></tr>
+              <tr><td style="padding: 5px;">TC-23</td><td>REQ-04</td><td>(-1, True, RESELLER10)</td><td style="color: #4ADE80;">ValueError</td><td>Subtotal Negatif</td></tr>
+              <tr><td style="padding: 5px;">TC-24</td><td>REQ-05</td><td>[Lego Tuxedo Cat]</td><td style="color: #4ADE80;">True</td><td>Checkout 1 Item</td></tr>
+              <tr><td style="padding: 5px;">TC-25</td><td>REQ-05</td><td>[Lego Cat, Bonsai]</td><td style="color: #4ADE80;">True</td><td>Checkout Multi Item</td></tr>
+              <tr><td style="padding: 5px;">TC-26</td><td>REQ-05</td><td>[] (Keranjang kosong)</td><td style="color: #4ADE80;">False</td><td>Tolak Keranjang Kosong</td></tr>
+              <tr><td style="padding: 5px;">TC-27</td><td>REQ-05</td><td>None / null</td><td style="color: #4ADE80;">False</td><td>Tolak Keranjang Null</td></tr>
+              <tr style="background: rgba(239, 68, 68, 0.15);"><td style="padding: 5px;">TC-28</td><td>REQ-06</td><td>DIPROSES_DIKIRIM + BATALKAN</td><td style="color: #F87171;">False</td><td>🔴 BUG-04 (ST: Pembatalan Paket)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Floating QA Trigger Button -->
+  <button class="floating-qa-btn" onclick="toggleQADrawer(true)">
+    <span>🧪</span>
+    <span>Mode Uji Kualitas (QA Lab)</span>
+  </button>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div class="brand-icon" style="width: 32px; height: 32px; font-size: 16px;">🧱</div>
+          <div>
+            <div style="font-weight: 800; font-size: 16px; color: var(--dark-text);">reseller by agt</div>
+            <div style="font-size: 11px; color: var(--muted-text);">Toko Online Marketplace Jual LEGO Resmi Indonesia</div>
+          </div>
+        </div>
+
+        <!-- Palette Swatches Showcase -->
+        <div class="footer-palette-showcase">
+          <span>Palet Warna Desain:</span>
+          <div class="palette-swatches">
+            <div class="swatch" style="background: #9DCCEC;" title="Periwinkle pale blue (#9DCCEC)"></div>
+            <div class="swatch" style="background: #F3C9C5;" title="Soft pink (#F3C9C5)"></div>
+            <div class="swatch" style="background: #F49B9B;" title="Spring Coral (#F49B9B)"></div>
+            <div class="swatch" style="background: #FFB18C;" title="Peach Fuzz (#FFB18C)"></div>
+            <div class="swatch" style="background: #FFE8A9;" title="Butter Yellow (#FFE8A9)"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 <strong>reseller by agt</strong>. Dibuat untuk Praktikum Mata Kuliah Uji Kualitas Produk IT.</p>
+        <p style="margin-top: 4px; font-size: 11px;">Font: Poppins | Objek Uji: Boundary Value Analysis, Equivalence Partitioning, Decision Table, State Transition.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+  <script src="test-runner.js"></script>
+</body>
+</html>
